@@ -1,4 +1,29 @@
-(setq al-font-lock-keywords
+;;; al-mode.el --- major mode for editing al files  -*- lexical-binding: t; -*-
+
+;; Copyright (c) 2020 by Dave Wilson
+
+;; Package: al-mode
+;; Created: November 1, 2020
+;; Version: 0.1
+;; Package-Requires: ((emacs "27.0"))
+;; Author: Dave Wilson
+
+;; License:
+;; This is free software; you can redistribute it and/or modify it
+;; under the terms of the GNU General Public License as published by
+;; the Free Software Foundation; either version 3, or (at your option)
+;; any later version. This is distributed in the hope that it will be
+;; useful, but without any warranty; without even the implied warranty
+;; of merchantability or fitness for a particular purpose. See the GNU
+;; General Public License for more details. See
+;; http://www.gnu.org/licenses/ for details.
+
+;; Commentary:
+;; v0.1 Just provides syntax highlighting
+
+;; Code:
+
+(setq-local al-font-lock-keywords
       (let* (
 	     (x-control-keywords '("ARRAY"
 				   "ASSERTERROR"
@@ -194,15 +219,6 @@
 				      "<>"
 				      "<"
 				      ">"))
-	     (x-math-keywords '("-"
-				"+"
-				"/"
-				"*"))
-	     (x-assignment-keywords '(":="
-				      "+="
-				      "-="
-				      "/="
-				      "*="))
 	     (x-other-keywords '("ADDFIRST"
 				 "ADDLAST"
 				 "ADDAFTER"
@@ -259,18 +275,44 @@
 				     x-applicationobject-keywords
 				     x-builtintype-keywords
 				     x-comparison-keywords
-				     x-math-keywords
-				     x-assignment-keywords
 				     x-other-keywords))
-	     (x-control-keywords-regexp (regexp-opt x-all-keywords 'words))
-	     )
-	`(
-	  (,x-control-keywords-regexp . font-lock-keyword-face))))
+	     (x-control-keywords-regexp (regexp-opt x-all-keywords 'words)))
+	`((,x-control-keywords-regexp . font-lock-keyword-face))))
 
+(setq-local al-assignments
+      '(("[:|+|-|/|*]=" . font-lock-keyword-face)))
+
+(setq-local al-comment-delimiters
+      '(("\\(//\\).*" . (1 font-lock-comment-delimiter-face))
+	("\\(/\\*\\).*" . (1 font-lock-comment-delimiter-face))
+	("\\.*\\(\\*/\\).*" . (1 font-lock-comment-delimiter-face))))
+
+(setq-local al-comment-text
+      '(("//\\(.*\\)" . (1 font-lock-comment-face))))
+
+(setq al-highlights (append al-font-lock-keywords
+			      al-assignments
+			      al-comment-delimiters
+			      al-comment-text))
+
+;; Handle pesky multiline comments -- from
+;; http://ergoemacs.org/emacs/elisp_comment_coloring.html
+(defvar al-mode-syntax-table nil "Syntax table for `xjv-mode'.")
+
+(setq al-mode-syntax-table
+      (let ( (synTable (make-syntax-table)))
+        ;; comment style “/* … */”
+        (modify-syntax-entry ?\/ ". 14" synTable)
+        (modify-syntax-entry ?* ". 23" synTable)
+        synTable))
 
 (define-derived-mode al-mode prog-mode "al mode"
   "Major mode for editing AL Language Files"
-    (set (make-local-variable 'font-lock-defaults)
-       '(al-font-lock-keywords nil t)))
+  (setq-local font-lock-multiline t)
+  (setq-local font-lock-defaults '(al-highlights nil t))
 
+  (set-syntax-table al-mode-syntax-table))
+
+;; Autoload mode when a .al file is opened
+(add-to-list 'auto-mode-alist '("\\.al" . al-mode))
 (provide 'al-mode)
