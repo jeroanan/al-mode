@@ -1,0 +1,45 @@
+* About
+
+al-mode is an Emacs major mode for editing Microsoft Dynamics 365
+Business Central AL-language files in Emacs. When this mode is loaded
+any .al files that are opened in emacs will pick up its functionality.
+
+If you are an Emacs user and work with AL then I welcome your feedback
+and pull requests.
+
+* Features
+
+- Syntax highlighting
+
+* Installation
+As al-mode is still in its infancy I have not yet requested it for
+inclusion in MELPA; currently installation is done manually:
+
+- Clone this repository
+- Copy al-mode.el to a suitable location (we suggest
+  ~/.emacs.d/al-mode)
+- Add the following to your .emacs:
+
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'load-path "~/.emacs.d/al-mode")
+(require 'al-mode)
+#+END_SRC
+
+* Future Additions
+
+In addition to the current syntax-highlighting I plan to add much more
+functionality as time goes on; the end goal of this project is to
+allow Emacs to be a good alternative to Visual Studio Code for working
+with AL. Short-term priorities are:
+
+- Implementation of the basics such as commands to comment out
+  selected code
+- A decent selection of snippets (most probably using yasnippets)
+
+Medium to long term goals will be features such as allowing build and
+deployment of AL code from Emacs.
+
+
+
+
+
