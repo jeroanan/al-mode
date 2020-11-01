@@ -282,18 +282,18 @@
 (setq-local al-assignments
       '(("[:|+|-|/|*]=" . font-lock-keyword-face)))
 
-(setq-local al-comment-delimiters
-      '(("\\(//\\).*" . (1 font-lock-comment-delimiter-face))
-	("\\(/\\*\\).*" . (1 font-lock-comment-delimiter-face))
-	("\\.*\\(\\*/\\).*" . (1 font-lock-comment-delimiter-face))))
+(setq-local al-string-text
+	    '(("'.*'" . font-lock-string-face)))
 
-(setq-local al-comment-text
-      '(("//\\(.*\\)" . (1 font-lock-comment-face))))
+(setq-local al-single-line-comment
+	    '((".*\\(//.*\\)" . (1 font-lock-comment-face))))
 
-(setq al-highlights (append al-font-lock-keywords
-			      al-assignments
-			      al-comment-delimiters
-			      al-comment-text))
+;; The different types of syntax highlight we want to apply in order
+;; of priority. SO for instance we
+(setq al-highlights (append al-single-line-comment
+			    al-string-text
+			    al-assignments
+			    al-font-lock-keywords))
 
 ;; Handle pesky multiline comments -- from
 ;; http://ergoemacs.org/emacs/elisp_comment_coloring.html
@@ -302,6 +302,8 @@
 (setq al-mode-syntax-table
       (let ( (synTable (make-syntax-table)))
         ;; comment style “/* … */”
+	;; single-line comments are currently handled above
+	;; in al-single-line-comment
         (modify-syntax-entry ?\/ ". 14" synTable)
         (modify-syntax-entry ?* ". 23" synTable)
         synTable))
@@ -315,4 +317,5 @@
 
 ;; Autoload mode when a .al file is opened
 (add-to-list 'auto-mode-alist '("\\.al" . al-mode))
+
 (provide 'al-mode)
