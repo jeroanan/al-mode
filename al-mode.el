@@ -297,7 +297,7 @@
 
 ;; Handle pesky multiline comments -- from
 ;; http://ergoemacs.org/emacs/elisp_comment_coloring.html
-(defvar al-mode-syntax-table nil "Syntax table for `xjv-mode'.")
+(defvar al-mode-syntax-table nil "Syntax table for `al-mode'.")
 
 (setq al-mode-syntax-table
       (let ( (synTable (make-syntax-table)))
