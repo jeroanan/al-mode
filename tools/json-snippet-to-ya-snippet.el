@@ -8,13 +8,20 @@
 	      (string-trim (nth 1 (split-string snippet-tag ":"))))
 	     (output-buffer-name
 	      (generate-new-buffer-name (concat "snippet-" snippet-name)))
-	     (output-buffer (generate-new-buffer output-buffer-name)))
+	     (output-buffer (generate-new-buffer output-buffer-name))
+	     (yasnippet-key "YASNIPPET-KEY"))
 	(with-current-buffer output-buffer-name
 	  (insert "# -*- mode: snippet -*-\n")
 	  (insert (format "# name: %s\n" snippet-name))
+	  (insert (format "# key: %s\n" yasnippet-key))
 	  (insert "# --\n\n")
 	  (dolist (k (cdr j))
-	    (when (string= "body" (car k))
-	      (dolist (l (cdr k))
-		(insert (format "%s\n" l))))))))))
+	    (cond ((string= "body" (car k))
+		   (dolist (l (cdr k))
+		     (insert (format "%s\n" l))))
+		  ((string= "prefix" (car k))
+		   (progn
+		     (search-backward yasnippet-key)
+		     (replace-match (format "%s" (downcase (cdr k))) t)
+		     (goto-char (point-max)))))))))))
       

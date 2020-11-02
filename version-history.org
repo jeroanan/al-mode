@@ -2,3 +2,7 @@
 
 ** v0.1
 Initial version; syntax highlighting only
+
+** v0.2
+Introduce script that takes Visual Studio Code snippets and translates
+them into yasnippets
