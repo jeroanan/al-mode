@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Enum Value
+# key: tenumvalue
+# --
+
+value(${1:ValueId}; ${0:MyValue})
+{
+}

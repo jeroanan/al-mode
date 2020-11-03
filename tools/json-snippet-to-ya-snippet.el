@@ -25,3 +25,5 @@
 		     (replace-match (format "%s" (downcase (cdr k))) t)
 		     (goto-char (point-max)))))))))))
       
+(fset 'options-seperator
+   (kmacro-lambda-form [?\C-s ?, return ?h ?i ?\" delete ?  ?\" escape] 0 "%d"))
