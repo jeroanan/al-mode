@@ -1,0 +1,46 @@
+# -*- mode: snippet -*-
+# name: Page
+# key: tpage
+# --
+
+page ${1:Id} ${2:MyPage}
+{
+	PageType = ${3:$$(yas-choose-value '("Card" "List" "RoleCenter" "CardPart" "ListPart" "Document" "Worksheet" "ListPlus" "ConfirmationDialog" "NavigatePage" "StandardDialog" "API" "ReportPreview" "ReportProcessingOnly" "XmlPort"))};
+	ApplicationArea = ${4:$$(yas-choose-value '("All" "Basic" "Suite" "Advanced"))};
+	UsageCategory = ${5:$$(yas-choose-value '("Administration" "Documents" "History" "Lists" "None" "ReportsAndAnalysis" "Tasks"))};
+	SourceTable = ${6:TableName};
+	
+	layout
+	{
+		area(Content)
+		{
+			group(${7:GroupName})
+			{
+				field(${9:Name}; ${8:NameSource})
+				{
+					ApplicationArea = ${4};
+					${10}
+				}
+			}
+		}
+	}
+	
+	actions
+	{
+		area(${11:Processing})
+		{
+			action(${12:ActionName})
+			{
+				ApplicationArea = ${4};
+				
+				trigger OnAction()
+				begin
+					${13}
+				end;
+			}
+		}
+	}
+	
+	var
+		${14:myInt}: ${0:Integer};
+}

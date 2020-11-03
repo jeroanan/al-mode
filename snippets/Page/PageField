@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: Page Field
+# key: tpagefield
+# --
+
+field(${1:MyField}; ${2:FieldSource})
+{
+	ApplicationArea = ${3:$$(yas-choose-value '("All" "Basic" "Suite" "Advanced"))};
+	${4:FieldPropertyName} = ${0:FieldPropertyValue};
+}

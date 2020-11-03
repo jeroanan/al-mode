@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: User Control
+# key: tusercontrol
+# --
+
+usercontrol(${1:ControlName}; ${2:AddInName})
+{
+	ApplicationArea = ${3:$$(yas-choose-value '("All" "Basic" "Suite" "Advanced"))};
+	
+	trigger ${4:MyTrigger()}
+	begin
+		$0
+	end;
+}

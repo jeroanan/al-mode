@@ -1,0 +1,47 @@
+# -*- mode: snippet -*-
+# name: Page of type list
+# key: tlistpage
+# --
+
+page ${1:Id} ${2:PageName}
+{
+	PageType = List;
+	ApplicationArea = ${3:$$(yas-choose-value '("All" "Basic" "Suite" "Advanced"))};
+	UsageCategory = Lists;
+	SourceTable = ${4:TableName};
+	
+	layout
+	{
+		area(Content)
+		{
+			repeater(${5:GroupName})
+			{
+				field(${7:Name}; ${6:NameSource})
+				{
+					ApplicationArea = ${3};
+					${8}
+				}
+			}
+		}
+		area(Factboxes)
+		{
+			${9}
+		}
+	}
+	
+	actions
+	{
+		area(${10:Processing})
+		{
+			action(${11:ActionName})
+			{
+				ApplicationArea = ${3};
+				
+				trigger OnAction();
+				begin
+					$0
+				end;
+			}
+		}
+	}
+}

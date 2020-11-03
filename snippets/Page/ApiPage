@@ -1,0 +1,32 @@
+# -*- mode: snippet -*-
+# name: Page of type API
+# key: tapipage
+# --
+
+page ${1:Id} ${2:ApiPageName}
+{
+	PageType = API;
+	Caption = '${3:apiPageName}';
+	APIPublisher = '${4:publisherName}';
+	APIGroup = '${5:groupName}';
+	APIVersion = '${6:VersionList}';
+	EntityName = '${7:entityName}';
+	EntitySetName = '${8:entitySetName}';
+	SourceTable = ${9:TableName};
+	DelayedInsert = true;
+	
+	layout
+	{
+		area(Content)
+		{
+			repeater(${10:GroupName})
+			{
+				field(${12:fieldName}; ${11:NameSource})
+				{
+					Caption = '${13:fieldCaption}';
+					${0}
+				}
+			}
+		}
+	}
+}

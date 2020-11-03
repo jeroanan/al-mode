@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: Action
+# key: taction
+# --
+
+action(${1:ActionName})
+{
+	ApplicationArea = ${2:$$(yas-choose-value '("All" "Basic" "Suite" "Advanced"))};
+	
+	trigger OnAction()
+	begin
+		$0
+	end;
+}

@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: View
+# key: tview
+# --
+
+view(${1:ViewName})
+{
+	Caption = '${2:ViewCaption}';
+	
+	layout
+	{
+		$0
+	}
+}
