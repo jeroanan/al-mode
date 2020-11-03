@@ -1,0 +1,50 @@
+# -*- mode: snippet -*-
+# name: Table
+# key: ttable
+# --
+
+table ${1:id} ${2:MyTable}
+{
+	DataClassification = ${3|ToBeClassified,CustomerContent,EndUserIdentifiableInformation,AccountData,EndUserPseudonymousIdentifiers,OrganizationIdentifiableInformation,SystemMetadata|};
+	
+	fields
+	{
+		field(1;${4:MyField}; ${5:Integer})
+		{
+			DataClassification = ${6|ToBeClassified,CustomerContent,EndUserIdentifiableInformation,AccountData,EndUserPseudonymousIdentifiers,OrganizationIdentifiableInformation,SystemMetadata|};
+			$7
+		}
+	}
+	
+	keys
+	{
+		key(${8:PK}; ${4:MyField})
+		{
+			Clustered = ${9|true,false|};
+		}
+	}
+	
+	var
+		${10:myInt}: ${11:Integer};
+	
+	trigger OnInsert()
+	begin
+		$12
+	end;
+	
+	trigger OnModify()
+	begin
+		$13
+	end;
+	
+	trigger OnDelete()
+	begin
+		$14
+	end;
+	
+	trigger OnRename()
+	begin
+		$0
+	end;
+	
+}

@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Table Key
+# key: tkey
+# --
+
+key(${1:MyKey}; ${2:MyField})
+{
+	$0
+}

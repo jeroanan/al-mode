@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: Table Field Text
+# key: tfieldtext
+# --
+
+field(${1:id}; ${2:MyField}; Text[${3:Length}])
+{
+	DataClassification = ${4:$$(yas-choose-value '("ToBeClassified" "CustomerContent" "EndUserIdentifiableInformation" "AccountData" "EndUserPseudonymousIdentifiers" "OrganizationIdentifiableInformation" "SystemMetadata"))};
+	$0
+}

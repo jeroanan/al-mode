@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: Table Field Option
+# key: tfieldoption
+# --
+
+field(${1:id}; ${2:MyField}; Option)
+{
+	DataClassification = ${3:$$(yas-choose-value '("ToBeClassified" "CustomerContent" "EndUserIdentifiableInformation" "AccountData" "EndUserPseudonymousIdentifiers" "OrganizationIdentifiableInformation" "SystemMetadata"))};
+	OptionMembers = ${0:Default};
+}
