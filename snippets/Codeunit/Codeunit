@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: Codeunit
+# key: tcodeunit
+# --
+
+codeunit ${1:Id} ${2:MyCodeunit}
+{
+	trigger OnRun()
+	begin
+		$0
+	end;
+	
+	var
+		${3:myInt}: ${4:Integer};
+}
