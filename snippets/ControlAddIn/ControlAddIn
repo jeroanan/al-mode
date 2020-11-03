@@ -1,0 +1,33 @@
+# -*- mode: snippet -*-
+# name: Control Add-In
+# key: tcontroladdin
+# --
+
+controladdin ${1:MyControlAddIn}
+{
+	RequestedHeight = ${2:300};
+	MinimumHeight = ${3:300};
+	MaximumHeight = ${4:300};
+	RequestedWidth = ${5:700};
+	MinimumWidth = ${6:700};
+	MaximumWidth = ${7:700};
+	VerticalStretch = ${8:$$(yas-choose-value '("true" "false"))};
+	VerticalShrink = ${9:$$(yas-choose-value '("true" "false"))};
+	HorizontalStretch = ${10:$$(yas-choose-value '("true" "false"))};
+	HorizontalShrink = ${11:$$(yas-choose-value '("true" "false"))};
+	Scripts = 
+		'${12:script1.js}',
+		'${13:script2.js}';
+	StyleSheets =
+		'${14:style.css}';
+	StartupScript = '${15:startupScript.js}';
+	RecreateScript = '${16:recreateScript.js}';
+	RefreshScript = '${17:refreshScript.js}';
+	Images = 
+		'${18:image1.png}',
+		'${19:image2.png}';
+	
+	event ${20:MyEvent}(${21})
+	
+	procedure ${22:MyProcedure}($0)
+}
