@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: DotNetAssembly
+# key: tdotnetassembly
+# --
+
+assembly(${1:AssemblyName})
+{
+	type(${2:TypeName};${0:AliasName}){}
+}

@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: DotNetPackage
+# key: tdotnet
+# --
+
+dotnet
+{
+	assembly(${1:AssemblyName})
+	{
+		type(${2:TypeName};${0:AliasName}){}
+	}
+}

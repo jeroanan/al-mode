@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: DotNetType
+# key: tdotnettype
+# --
+
+type(${1:TypeName};${0:AliasName}){}
