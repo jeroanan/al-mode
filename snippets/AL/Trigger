@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: Trigger
+# key: ttrigger
+# --
+
+trigger ${1:OnWhat}(${2})
+var
+	${3:myInt}: ${4:Integer};
+begin
+	$0
+end;

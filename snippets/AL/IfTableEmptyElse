@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: If Table Empty Else
+# key: tisemptyelse
+# --
+
+if ${1:Rec}.IsEmpty then begin
+	${2}
+end else begin
+	$0
+end;

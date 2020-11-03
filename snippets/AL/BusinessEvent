@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Business Event
+# key: teventbus
+# --
+
+[BusinessEvent(${1:IncludeSender})]
+local procedure ${0:MyProcedure}()
+begin
+end;

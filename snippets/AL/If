@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: If
+# key: tif
+# --
+
+if ${1:BooleanExpression} then begin
+	$0
+end;

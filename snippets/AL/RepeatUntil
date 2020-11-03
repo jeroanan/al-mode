@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Repeat Until
+# key: trepeat
+# --
+
+repeat begin
+	$0
+end until ${1:BooleanExpression};

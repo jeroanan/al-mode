@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: Event Subscriber
+# key: teventsub
+# --
+
+[EventSubscriber(ObjectType::${1:$$(yas-choose-value '("Codeunit" "Page" "Query" "Report" "Table" "XmlPort|}" " ${2|Codeunit::" "Database::" "Page::" "Query::" "Report::" "XmlPort::"))}, ${3:'OnSomeEvent'}, ${4:'ElementName'}, ${5:SkipOnMissingLicense}, ${6:SkipOnMissingPermission})]
+local procedure ${7:MyProcedure}(${8})
+begin
+	$0
+end;

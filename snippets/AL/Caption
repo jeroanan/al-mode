@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Caption ML
+# key: tcaptionml
+# --
+
+CaptionML = ENU = '${1:englishText}',
+			${2:languageShortcut} = '${0:languageText}';

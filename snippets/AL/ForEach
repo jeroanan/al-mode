@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: ForEach
+# key: tforeach
+# --
+
+foreach ${1:Value} in ${2:EnumerableCollection} do begin
+	$0
+end;

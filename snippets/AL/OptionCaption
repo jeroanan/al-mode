@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Option Caption ML
+# key: toptioncaptionml
+# --
+
+OptionCaptionML = ENU = '${1:englishText}',
+			${2:languageShortcut} = '${0:languageText}';

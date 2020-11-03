@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Integration Event
+# key: teventint
+# --
+
+[IntegrationEvent(${1:IncludeSender}, false)]
+local procedure ${0:MyProcedure}()
+begin
+end;

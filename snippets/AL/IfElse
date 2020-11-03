@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: If Else
+# key: tifelse
+# --
+
+if ${1:BooleanExpression} then begin
+	${2}
+end else begin
+	$0
+end;

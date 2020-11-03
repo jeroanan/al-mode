@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: Procedure
+# key: tprocedure
+# --
+
+${1:local} procedure ${2:MyProcedure}(${3})
+var
+	${4:myInt}: ${5:Integer};
+begin
+	$0
+end;

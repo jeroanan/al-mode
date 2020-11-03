@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: If Table Empty
+# key: tisempty
+# --
+
+if ${1:Rec}.IsEmpty then begin
+	$0
+end;

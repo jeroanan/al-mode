@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: Case Else
+# key: tcaseelse
+# --
+
+case ${1:Expression} of
+	${2:ExpressionOrRange}:
+		${3}
+	${4:ExpressionOrRange}:
+		${5}
+else
+	$0
+end;

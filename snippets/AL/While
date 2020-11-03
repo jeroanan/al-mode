@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: While
+# key: twhile
+# --
+
+while ${1:BooleanExpression} do begin
+	$0
+end;

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Assert Error
+# key: tassert
+# --
+
+assertError ${1:AssertStatement};
+if ${2:getLastErrorText} <> ${3:ErrorText} then
+	error('${4:Unexpected error: %1}', ${0:getLastErrorText});

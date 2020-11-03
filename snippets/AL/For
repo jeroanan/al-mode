@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: For
+# key: tfor
+# --
+
+for ${1:ControlVariable} := ${2:StartNumber} to ${3:EndNumber} do begin
+	$0
+end;

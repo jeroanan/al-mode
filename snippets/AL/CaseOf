@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: Case Of
+# key: tcaseof
+# --
+
+case ${1:Expression} of
+	${2:ExpressionOrRange}:
+		${3}
+	${4:ExpressionOrRange}:
+		$0
+end;

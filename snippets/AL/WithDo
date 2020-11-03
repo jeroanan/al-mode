@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: With Do
+# key: twithdo
+# --
+
+with ${1:RecordName} do begin
+	$0
+end;
