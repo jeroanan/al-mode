@@ -10,6 +10,8 @@ and pull requests.
 * Features
 
 - Syntax highlighting
+- Snippets using yasnippet
+
 
 * Installation
 As al-mode is still in its infancy I have not yet requested it for
@@ -25,16 +27,18 @@ inclusion in MELPA; currently installation is done manually:
 (require 'al-mode)
 #+END_SRC
 
+The snippets can be installed by copying the contents of the snippets
+folder into ~/.emacs.d/snippets/al-mode. The yasnippet package is
+required to use them.
+
 * Future Additions
 
-In addition to the current syntax-highlighting I plan to add much more
-functionality as time goes on; the end goal of this project is to
-allow Emacs to be a good alternative to Visual Studio Code for working
-with AL. Short-term priorities are:
+I plan to add much more functionality as time goes on; the end goal of
+this project is to allow Emacs to be a good alternative to Visual
+Studio Code for working with AL. Short-term priorities are:
 
 - Implementation of the basics such as commands to comment out
   selected code
-- A decent selection of snippets (most probably using yasnippets)
 
 Medium to long term goals will be features such as allowing build and
 deployment of AL code from Emacs.
