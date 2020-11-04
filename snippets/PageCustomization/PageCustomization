@@ -1,0 +1,20 @@
+# -*- mode: snippet -*-
+# name: Page Customization
+# key: tpagecust
+# --
+
+pagecustomization ${1:MyCustomization} customizes ${2:MyTargetPage}
+{
+	layout
+	{
+		${3:// Add changes to page layout here}
+	}
+	
+	actions
+	{
+		${0:// Add changes to page actions here}
+	}
+	
+	//Variables, procedures and triggers are not allowed on Page Customizations
+}
+

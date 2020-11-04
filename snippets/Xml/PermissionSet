@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: PermissionSet
+# key: tpermset
+# --
+
+<PermissionSet RoleID="${1:roleId}" RoleName="${2:roleName}">
+	<Permission>
+		<ObjectType>${3:$$(yas-choose-value '("0" "1" "2" "3" "4" "5" "6" "7" "8" "9" "10" "11"))}</ObjectType>
+		<ObjectID>${4:objectId}</ObjectID>
+		<ReadPermission>${5:$$(yas-choose-value '("0" "1"))}</ReadPermission>
+		<InsertPermission>${6:$$(yas-choose-value '("0" "1"))}</InsertPermission>
+		<ModifyPermission>${7:$$(yas-choose-value '("0" "1"))}</ModifyPermission>
+		<DeletePermission>${8:$$(yas-choose-value '("0" "1"))}</DeletePermission>
+		<ExecutePermission>${9:$$(yas-choose-value '("0" "1"))}</ExecutePermission>
+		<SecurityFilter />
+	</Permission>
+</PermissionSet>

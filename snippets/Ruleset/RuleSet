@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: RuleSet
+# key: truleset
+# --
+
+{
+	"name": "${1:Name}",
+	"description": "${2:Description}",
+	"rules": [
+		{
+			"id": "${3:DiagnosticId}",
+			"action": "${4:$$(yas-choose-value '("Error" "Warning" "Info" "Hidden" "None"))}",
+			"justification": "${0:Justification}"
+		}
+	]
+}

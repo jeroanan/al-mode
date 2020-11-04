@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: Data Item
+# key: tdataitem
+# --
+
+dataitem(${1:DataItemName}; ${2:SourceTableName})
+{
+	column(${3:ColumnName}; ${4:SourceFieldName})
+	{
+		${0}
+	}
+}

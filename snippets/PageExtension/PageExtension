@@ -1,0 +1,20 @@
+# -*- mode: snippet -*-
+# name: Page Extension
+# key: tpageext
+# --
+
+pageextension ${1:Id} ${2:MyExtension} extends ${3:MyTargetPage}
+{
+	layout
+	{
+		${4:// Add changes to page layout here}
+	}
+	
+	actions
+	{
+		${5:// Add changes to page actions here}
+	}
+	
+	var
+		${6:myInt}: ${0:Integer};
+}

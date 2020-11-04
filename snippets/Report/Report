@@ -1,0 +1,54 @@
+# -*- mode: snippet -*-
+# name: Report
+# key: treport
+# --
+
+report ${1:Id} ${2:MyReport}
+{
+	UsageCategory = ${3:$$(yas-choose-value '("Administration" "Documents" "History" "Lists" "None" "ReportsAndAnalysis" "Tasks"))};
+	ApplicationArea = ${4:$$(yas-choose-value '("All" "Basic" "Suite" "Advanced"))};
+	
+	dataset
+	{
+		dataitem(${6:DataItemName}; ${5:SourceTableName})
+		{
+			column(${8:ColumnName}; ${7:SourceFieldName})
+			{
+				${9}
+			}
+		}
+	}
+	
+	requestpage
+	{
+		layout
+		{
+			area(Content)
+			{
+				group(${10:GroupName})
+				{
+					field(${12:Name}; ${11:SourceExpression})
+					{
+						ApplicationArea = ${4};
+						${13}
+					}
+				}
+			}
+		}
+	
+		actions
+		{
+			area(${14:processing})
+			{
+				action(${15:ActionName})
+				{
+					ApplicationArea = ${4};
+					${16}
+				}
+			}
+		}
+	}
+	
+	var
+		${17:myInt}: ${0:Integer};
+}

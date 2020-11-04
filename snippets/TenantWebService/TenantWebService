@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: Tenant Web Service XML
+# key: twebservice
+# --
+
+<?xml version="1.0" encoding="utf-8"?>
+<ExportedData>
+	<TenantWebServiceCollection>
+		<TenantWebService>
+			<ObjectType>${1:$$(yas-choose-value '("CodeUnit" "Page" "Query"))}</ObjectType>
+			<ServiceName>${2:ServiceName}</ServiceName>
+			<ObjectID>${3:ObjectID}</ObjectID>
+			<Published>${4:$$(yas-choose-value '("true" "false"))}</Published>
+		</TenantWebService>
+	</TenantWebServiceCollection>
+</ExportedData>

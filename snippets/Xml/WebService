@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: WebService
+# key: txmlwebservice
+# --
+
+<TenantWebService>
+	<ObjectType>${1:$$(yas-choose-value '("Page" "CodeUnit" "Query"))}</ObjectType>
+	<ServiceName>${2:serviceName}</ServiceName>
+	<ObjectID>${3:objectId}</ObjectID>
+	<Published>${4:$$(yas-choose-value '("false" "true"))}</Published>
+</TenantWebService>

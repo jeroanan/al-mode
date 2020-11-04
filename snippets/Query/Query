@@ -1,0 +1,32 @@
+# -*- mode: snippet -*-
+# name: Query
+# key: tquery
+# --
+
+query ${1:Id} ${2:MyQuery}
+{
+	QueryType = ${3:$$(yas-choose-value '("Normal" "API"))};
+	
+	elements
+	{
+		dataitem(${5:DataItemName}; ${4:SourceTableName})
+		{
+			column(${7:ColumnName}; ${6:SourceFieldName})
+			{
+				${8}
+			}
+			filter(${10:FilterName}; ${9:SourceFieldName})
+			{
+				${11}
+			}
+		}
+	}
+	
+	var
+		${12:myInt}: ${13:Integer};
+	
+	trigger ${14:OnBeforeOpen}()
+	begin
+		$0
+	end;
+}

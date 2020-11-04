@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: Profile
+# key: tprofile
+# --
+
+profile ${1:MyProfile} 
+{
+	Description = ${2:'Profile Display Name'};
+	RoleCenter = ${3:RoleCenter};
+	Customizations = ${0:Customizations};
+}

@@ -4,8 +4,11 @@
 	 (json (json-read-file file-name)))
     (dolist (j json)
       (let* ((snippet-tag (car j))
+	     (tag-split (split-string snippet-tag ":"))
 	     (snippet-name
-	      (string-trim (nth 1 (split-string snippet-tag ":"))))
+	      (if (= (length tag-split) 2)
+		  (string-trim (nth 1 tag-split))
+		snippet-tag))
 	     (output-buffer-name
 	      (generate-new-buffer-name (concat "snippet-" snippet-name)))
 	     (output-buffer (generate-new-buffer output-buffer-name))

@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: Rule
+# key: trule
+# --
+
+{
+	"id": "${1:DiagnosticId}",
+	"action": "${2:$$("Error" "Warning" "Info" "Hidden" "None"}",
+	"justification": "${0:Justification}"
+}

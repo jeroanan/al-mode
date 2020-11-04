@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Column
+# key: tcolumn
+# --
+
+column(${1:ColumnName}; ${2:SourceFieldName})
+{
+	${0}
+}

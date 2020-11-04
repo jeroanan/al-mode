@@ -1,0 +1,52 @@
+# -*- mode: snippet -*-
+# name: XmlPort
+# key: txmlport
+# --
+
+xmlport ${1:Id} ${2:MyXmlport}
+{
+	schema
+	{
+		textelement(${3:NodeName1})
+		{
+			tableelement(${5:NodeName2}; ${4:SourceTableName})
+			{
+				fieldattribute(${7:NodeName3}; ${5:NodeName2}.${6:SourceFieldName})
+				{
+					${8}
+				}
+			}
+		}
+	}
+	
+	requestpage
+	{
+		layout
+		{
+			area(content)
+			{
+				group(${9:GroupName})
+				{
+					field(${11:Name}; ${10:SourceExpression})
+					{
+						${12}
+					}
+				}
+			}
+		}
+	
+		actions
+		{
+			area(${13:processing})
+			{
+				action(${14:ActionName})
+				{
+					${15}
+				}
+			}
+		}
+	}
+	
+	var
+		${16:myInt}: ${0:Integer};
+}
