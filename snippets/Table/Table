@@ -5,13 +5,13 @@
 
 table ${1:id} ${2:MyTable}
 {
-	DataClassification = ${3|ToBeClassified,CustomerContent,EndUserIdentifiableInformation,AccountData,EndUserPseudonymousIdentifiers,OrganizationIdentifiableInformation,SystemMetadata|};
+	DataClassification = ${3:$$(yas-choose-value '("ToBeClassified" "CustomerContent" "EndUserIdentifiableInformation" "AccountData" "EndUserPseudonymousIdentifiers" "OrganizationIdentifiableInformation" "SystemMetadata"))};
 	
 	fields
 	{
 		field(1;${4:MyField}; ${5:Integer})
 		{
-			DataClassification = ${6|ToBeClassified,CustomerContent,EndUserIdentifiableInformation,AccountData,EndUserPseudonymousIdentifiers,OrganizationIdentifiableInformation,SystemMetadata|};
+			DataClassification = ${6:$$(yas-choose-value '("ToBeClassified" "CustomerContent" "EndUserIdentifiableInformation" "AccountData" "EndUserPseudonymousIdentifiers" "OrganizationIdentifiableInformation" "SystemMetadata"))};
 			$7
 		}
 	}
@@ -20,7 +20,7 @@ table ${1:id} ${2:MyTable}
 	{
 		key(${8:PK}; ${4:MyField})
 		{
-			Clustered = ${9|true,false|};
+			Clustered = ${9:$$(yas-choose-value '("true" "false"))};
 		}
 	}
 	
