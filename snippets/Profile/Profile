@@ -7,5 +7,5 @@ profile ${1:MyProfile}
 {
 	Description = ${2:'Profile Display Name'};
 	RoleCenter = ${3:RoleCenter};
-	Customizations = ${0:Customizations};
+	Customizations = ${4:Customizations};
 }

@@ -50,5 +50,5 @@ report ${1:Id} ${2:MyReport}
 	}
 	
 	var
-		${17:myInt}: ${0:Integer};
+		${17:myInt}: ${18:Integer};
 }

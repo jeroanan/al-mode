@@ -11,5 +11,5 @@ tableextension ${1:Id} ${2:MyExtension} extends ${3:MyTargetTable}
 	}
 	
 	var
-		${5:myInt}: ${0:Integer};
+		${5:myInt}: ${6:Integer};
 }

@@ -7,7 +7,7 @@ enum ${1:id} ${2:MyEnum}
 {
 	Extensible = ${3:$$(yas-choose-value '("true" "false"))};
 	
-	value(0; ${0:MyValue})
+	value(0; ${4:MyValue})
 	{
 	}
 }

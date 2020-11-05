@@ -12,7 +12,7 @@ pagecustomization ${1:MyCustomization} customizes ${2:MyTargetPage}
 	
 	actions
 	{
-		${0:// Add changes to page actions here}
+		${4:// Add changes to page actions here}
 	}
 	
 	//Variables, procedures and triggers are not allowed on Page Customizations

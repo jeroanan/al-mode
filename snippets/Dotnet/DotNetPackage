@@ -7,6 +7,6 @@ dotnet
 {
 	assembly(${1:AssemblyName})
 	{
-		type(${2:TypeName};${0:AliasName}){}
+		type(${2:TypeName};${3:AliasName}){}
 	}
 }

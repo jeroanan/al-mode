@@ -6,5 +6,5 @@
 field(${1:id}; ${2:MyField}; ${3:$$(yas-choose-value '("Blob" "BigInteger" "Boolean" "Code[50]" "Date" "DateFormula" "Decimal" "Duration" "Integer" "Guid" "Media" "MediaSet" "Option" "RecordID" "TableFilter" "Text[50]" "Time"))})
 {
 	DataClassification = ${4:$$(yas-choose-value '("ToBeClassified" "CustomerContent" "EndUserIdentifiableInformation" "AccountData" "EndUserPseudonymousIdentifiers" "OrganizationIdentifiableInformation" "SystemMetadata"))};
-	${5:FieldPropertyName} = ${0:FieldPropertyValue};
+	${5:FieldPropertyName} = ${6:FieldPropertyValue};
 }

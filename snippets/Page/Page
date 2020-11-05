@@ -42,5 +42,5 @@ page ${1:Id} ${2:MyPage}
 	}
 	
 	var
-		${14:myInt}: ${0:Integer};
+		${14:myInt}: ${15:Integer};
 }

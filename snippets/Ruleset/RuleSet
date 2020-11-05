@@ -10,7 +10,7 @@
 		{
 			"id": "${3:DiagnosticId}",
 			"action": "${4:$$(yas-choose-value '("Error" "Warning" "Info" "Hidden" "None"))}",
-			"justification": "${0:Justification}"
+			"justification": "${5:Justification}"
 		}
 	]
 }

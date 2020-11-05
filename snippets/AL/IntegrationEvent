@@ -4,6 +4,6 @@
 # --
 
 [IntegrationEvent(${1:IncludeSender}, false)]
-local procedure ${0:MyProcedure}()
+local procedure ${2:MyProcedure}()
 begin
 end;

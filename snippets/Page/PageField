@@ -6,5 +6,5 @@
 field(${1:MyField}; ${2:FieldSource})
 {
 	ApplicationArea = ${3:$$(yas-choose-value '("All" "Basic" "Suite" "Advanced"))};
-	${4:FieldPropertyName} = ${0:FieldPropertyValue};
+	${4:FieldPropertyName} = ${5:FieldPropertyValue};
 }

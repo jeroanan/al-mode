@@ -4,4 +4,4 @@
 # --
 
 OptionCaptionML = ENU = '${1:englishText}',
-			${2:languageShortcut} = '${0:languageText}';
+			${2:languageShortcut} = '${3:languageText}';

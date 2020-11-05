@@ -16,5 +16,5 @@ pageextension ${1:Id} ${2:MyExtension} extends ${3:MyTargetPage}
 	}
 	
 	var
-		${6:myInt}: ${0:Integer};
+		${6:myInt}: ${7:Integer};
 }

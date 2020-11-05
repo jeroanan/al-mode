@@ -3,6 +3,6 @@
 # key: tenumvalue
 # --
 
-value(${1:ValueId}; ${0:MyValue})
+value(${1:ValueId}; ${2:MyValue})
 {
 }

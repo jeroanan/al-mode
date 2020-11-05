@@ -5,7 +5,7 @@
 
 enumextension ${1:Id} ${2:MyEnumExtension} extends ${3:MyTargetEnum}
 {
-	value(${4:ValueId}; ${0:MyValue})
+	value(${4:ValueId}; ${5:MyValue})
 	{
 	}
 }

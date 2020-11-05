@@ -3,4 +3,4 @@
 # key: tdotnettype
 # --
 
-type(${1:TypeName};${0:AliasName}){}
+type(${1:TypeName};${2:AliasName}){}

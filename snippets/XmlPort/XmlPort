@@ -48,5 +48,5 @@ xmlport ${1:Id} ${2:MyXmlport}
 	}
 	
 	var
-		${16:myInt}: ${0:Integer};
+		${16:myInt}: ${17:Integer};
 }
