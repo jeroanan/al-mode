@@ -11,6 +11,7 @@ and pull requests.
 
 - Syntax highlighting
 - Snippets using yasnippet
+- Basic indentation
 
 
 * Installation
