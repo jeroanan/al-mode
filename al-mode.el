@@ -308,10 +308,48 @@
         (modify-syntax-entry ?* ". 23" synTable)
         synTable))
 
+(defun al-get-previous-line ()
+  (save-excursion
+    (progn
+      (previous-line)
+      (beginning-of-line)
+      (setq p1 (point))
+      (end-of-line)
+      (setq p2 (point))))
+    (buffer-substring-no-properties p1 p2))
+
+(defun al-goto-first-character-on-line ()
+    (beginning-of-line)
+    (skip-chars-forward " \t\r"))
+  
+(defun al-get-previous-line-indent ()
+  (save-excursion
+    (previous-line)
+    (al-goto-first-character-on-line)
+    (current-column)))
+ 
+(defun al-get-previous-line-last-token ()
+  (string-trim (car (last (split-string (al-get-previous-line) " ")))))
+
+(defun al-does-last-line-mean-indent? ()
+  (let ((previous-token (al-get-previous-line-last-token))
+	(matching-tokens '("{" "begin")))
+    (member previous-token matching-tokens)))
+    
+(defun al-indent-line ()
+  (let ((previous-line (al-get-previous-line)))
+    (when (al-does-last-line-mean-indent?)
+      (save-excursion
+	(al-goto-first-character-on-line)
+	(indent-to (indent-next-tab-stop (al-get-previous-line-indent)))))))
+
 (define-derived-mode al-mode prog-mode "al mode"
   "Major mode for editing AL Language Files"
   (setq-local font-lock-multiline t)
   (setq-local font-lock-defaults '(al-highlights nil t))
+  (setq-local indent-line-function 'al-indent-line)
+  (setq indent-tabs-mode nil)
+  (setq tab-width 4)
 
   (set-syntax-table al-mode-syntax-table))
 
