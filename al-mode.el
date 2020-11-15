@@ -308,40 +308,89 @@
         (modify-syntax-entry ?* ". 23" synTable)
         synTable))
 
-(defun al-get-previous-line ()
+(defun al-get-line-content ()
   (save-excursion
-    (progn
-      (previous-line)
-      (beginning-of-line)
-      (setq p1 (point))
-      (end-of-line)
-      (setq p2 (point))))
-    (buffer-substring-no-properties p1 p2))
+    (beginning-of-line)
+    (setq p1 (point))
+    (end-of-line)
+    (setq p2 (point)))
+  (buffer-substring-no-properties p1 p2))
 
+(defun al-goto-previous-non-blank-line ()
+  (previous-line)
+  (setq line-content (al-get-line-content))
+  (when (and (string= "" (string-trim line-content))
+	     (/= (line-number-at-pos) 1))
+    (al-goto-previous-non-blank-line)))
+
+(defun al-get-previous-non-blank-line ()
+  (save-excursion
+    (al-goto-previous-non-blank-line)
+    (al-get-line-content)))
+				
 (defun al-goto-first-character-on-line ()
     (beginning-of-line)
     (skip-chars-forward " \t\r"))
   
-(defun al-get-previous-line-indent ()
+(defun al-get-current-line-indent ()
   (save-excursion
-    (previous-line)
     (al-goto-first-character-on-line)
     (current-column)))
- 
-(defun al-get-previous-line-last-token ()
-  (string-trim (car (last (split-string (al-get-previous-line) " ")))))
 
-(defun al-does-last-line-mean-indent? ()
-  (let ((previous-token (al-get-previous-line-last-token))
-	(matching-tokens '("{" "begin")))
-    (member previous-token matching-tokens)))
+(defun al-get-previous-line-indent ()
+  (save-excursion
+    (al-goto-previous-non-blank-line)
+    (al-get-current-line-indent)))
+
+(defun al-get-indent-on-last-line-ending-with-token (token)
+  (save-excursion
+    (al-goto-line-where-last-token-is token)
+    (al-get-current-line-indent)))
+ 
+(defun al-get-current-line-last-token ()
+    (string-trim (car (last
+		       (split-string (al-get-line-content) " ")))))
+  
+(defun al-get-previous-line-last-token ()
+  (save-excursion
+    (al-goto-previous-non-blank-line)
+    (al-get-current-line-last-token)))
+
+(defun al-goto-line-where-last-token-is (token)
+  (previous-line)
+  (unless (string= token (al-get-current-line-last-token))
+    (al-goto-line-where-last-token-is token)))
+
+(setq begin-end-blocks '(("{" . "}")
+			 ("begin" . "end;")))
+
+(defun al-last-line-begins-block? ()
+  (let ((previous-token (al-get-previous-line-last-token)))
+    (member previous-token (map-keys begin-end-blocks))))
+
+(defun al-this-line-ends-block? ()
+  (let ((last-token (al-get-current-line-last-token))
+	(matching-tokens (map-values begin-end-blocks)))
+    (member last-token matching-tokens)))
+    
+(defun al-indent-for-new-block ()
+  (save-excursion
+    (al-goto-first-character-on-line)
+    (indent-to (indent-next-tab-stop (al-get-previous-line-indent)))))
+
+(defun al-indent-end-block ()
+  (save-excursion
+    (let* ((this-token (al-get-current-line-last-token))
+	   (block-starter (car (rassoc this-token begin-end-blocks)))
+	   (starting-indent (- (al-get-indent-on-last-line-ending-with-token block-starter) 1)))
+      (al-goto-first-character-on-line)
+      (indent-to (indent-next-tab-stop starting-indent)))))
     
 (defun al-indent-line ()
-  (let ((previous-line (al-get-previous-line)))
-    (when (al-does-last-line-mean-indent?)
-      (save-excursion
-	(al-goto-first-character-on-line)
-	(indent-to (indent-next-tab-stop (al-get-previous-line-indent)))))))
+  (let ((previous-line (al-get-previous-non-blank-line)))
+    (cond
+     ((al-last-line-begins-block?) (al-indent-for-new-block))
+     ((al-this-line-ends-block?) (al-indent-end-block)))))
 
 (define-derived-mode al-mode prog-mode "al mode"
   "Major mode for editing AL Language Files"
