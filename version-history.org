@@ -12,3 +12,6 @@ provided with Visual Studio Code's AL Language extension and converted
 into yasnippets
 
 Very basic indentation
+
+** v0.3
+Improved code indentation
