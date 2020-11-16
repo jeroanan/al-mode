@@ -332,6 +332,16 @@
     (beginning-of-line)
     (skip-chars-forward " \t\r"))
   
+(defun al-delete-leading-whitespace ()
+  "Delete leading whitespace from the current line"
+  (save-excursion
+    (beginning-of-line)
+    (setq-local p1 (point))
+    (al-goto-first-character-on-line)
+    (setq-local p2 (- (point) 1))
+    (unless (= p1 p2)
+      (delete-region p1 p2))))
+  
 (defun al-get-current-line-indent ()
   (save-excursion
     (al-goto-first-character-on-line)
@@ -342,11 +352,6 @@
     (al-goto-previous-non-blank-line)
     (al-get-current-line-indent)))
 
-(defun al-get-indent-on-last-line-ending-with-token (token)
-  (save-excursion
-    (al-goto-line-where-last-token-is token)
-    (al-get-current-line-indent)))
- 
 (defun al-get-current-line-last-token ()
     (string-trim (car (last
 		       (split-string (al-get-line-content) " ")))))
@@ -357,12 +362,36 @@
     (al-get-current-line-last-token)))
 
 (defun al-goto-line-where-last-token-is (token)
-  (previous-line)
+  (forward-line -1)
   (unless (string= token (al-get-current-line-last-token))
     (al-goto-line-where-last-token-is token)))
 
+(defun al-get-indent-on-last-line-ending-with-token (token)
+  (save-excursion
+    (al-goto-line-where-last-token-is token)
+    (al-get-current-line-indent)))
+
+(defun al-goto-start-of-block (block-alist-entry current-level)
+  (let ((block-begin (car block-alist-entry))
+	(block-end (cdr block-alist-entry)))
+    (forward-line -1)
+    (let ((last-token (al-get-current-line-last-token)))
+      (cond
+       ((string= last-token block-end)
+	(al-goto-start-of-block block-alist-entry (+ current-level 1)))
+       ((string= last-token block-begin)
+	(when (> current-level 0)
+	  (al-goto-start-of-block block-alist-entry (- current-level 1))))
+       (t (al-goto-start-of-block block-alist-entry current-level))))))
+
+(defun al-get-indent-at-start-of-block (block-alist-entry)
+  (save-excursion
+    (al-goto-start-of-block block-alist-entry 0)
+    (al-get-current-line-indent)))
+
 (setq begin-end-blocks '(("{" . "}")
-			 ("begin" . "end;")))
+			 ("begin" . "end;")
+			 ("var" . nil)))
 
 (defun al-last-line-begins-block? ()
   (let ((previous-token (al-get-previous-line-last-token)))
@@ -381,16 +410,25 @@
 (defun al-indent-end-block ()
   (save-excursion
     (let* ((this-token (al-get-current-line-last-token))
-	   (block-starter (car (rassoc this-token begin-end-blocks)))
-	   (starting-indent (- (al-get-indent-on-last-line-ending-with-token block-starter) 1)))
+	   (block-alist-entry (rassoc this-token begin-end-blocks))
+	   (starting-indent (al-get-indent-at-start-of-block block-alist-entry) ))
       (al-goto-first-character-on-line)
-      (indent-to (indent-next-tab-stop starting-indent)))))
+      (indent-to starting-indent))))
+
+(defun al-indent-same-as-previous-line ()
+  "Indent this line to the same level as the last non-empty one"
+  (save-excursion
+    (let ((indent-level (al-get-previous-line-indent)))
+	(al-goto-first-character-on-line)
+	(indent-to indent-level))))
     
 (defun al-indent-line ()
-  (let ((previous-line (al-get-previous-non-blank-line)))
-    (cond
-     ((al-last-line-begins-block?) (al-indent-for-new-block))
-     ((al-this-line-ends-block?) (al-indent-end-block)))))
+  (al-delete-leading-whitespace)
+  (cond
+   ((= (line-number-at-pos) 1) nil)
+   ((al-this-line-ends-block?) (al-indent-end-block))
+   ((al-last-line-begins-block?) (al-indent-for-new-block))
+   (t (al-indent-same-as-previous-line))))
 
 (define-derived-mode al-mode prog-mode "al mode"
   "Major mode for editing AL Language Files"
@@ -406,3 +444,4 @@
 (add-to-list 'auto-mode-alist '("\\.al" . al-mode))
 
 (provide 'al-mode)
+
