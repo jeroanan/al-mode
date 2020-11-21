@@ -279,17 +279,22 @@
 		   (x-control-keywords-regexp (regexp-opt x-all-keywords 'words)))
 	      `((,x-control-keywords-regexp . font-lock-keyword-face))))
 
+(defvar al-assignments)
 (setq-local al-assignments
 	    '(("[:|+|-|/|*]=" . font-lock-keyword-face)))
 
+(defvar al-string-text)
 (setq-local al-string-text
 	    '(("'.*'" . font-lock-string-face)))
 
+(defvar al-single-line-comment)
 (setq-local al-single-line-comment
 	    '((".*\\(//.*\\)" . (1 font-lock-comment-face))))
 
 ;; The different types of syntax highlight we want to apply in order
-;; of priority. SO for instance we
+;; of priority. SO for instance we want to apply al-single-line-comment before
+;; all other comment types.
+(defvar al-highlights)
 (setq al-highlights (append al-single-line-comment
 			    al-string-text
 			    al-assignments
@@ -389,6 +394,7 @@
     (al-goto-start-of-block block-alist-entry 0)
     (al-get-current-line-indent)))
 
+(defvar begin-end-blocks)
 (setq begin-end-blocks '(("{" . "}")
 			 ("begin" . "end;")
 			 ("var" . nil)))
@@ -444,4 +450,3 @@
 (add-to-list 'auto-mode-alist '("\\.al" . al-mode))
 
 (provide 'al-mode)
-
