@@ -15,3 +15,4 @@ Very basic indentation
 
 ** v0.3
 Improved code indentation
+Run flymake on code so far

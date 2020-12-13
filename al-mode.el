@@ -326,11 +326,11 @@
 
 (defun al-goto-previous-non-blank-line ()
   "Move the point up to the first non-blank line it encounters."
-  (previous-line)
-  (setq line-content (al-get-line-content))
-  (when (and (string= "" (string-trim line-content))
-	     (/= (line-number-at-pos) 1))
-    (al-goto-previous-non-blank-line)))
+  (forward-line -1)
+  (let ((line-content (setq line-content (al-get-line-content))))
+    (when (and (string= "" (string-trim line-content))
+	       (/= (line-number-at-pos) 1))))
+    (al-goto-previous-non-blank-line))
 
 (defun al-goto-first-character-on-line ()
   "Move the point to the first non-whitespace character on the current line."
